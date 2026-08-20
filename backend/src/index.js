@@ -4,6 +4,9 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import connectDB from "./utils/db.js"
 import {router} from "./routes/userRoute.js"
+import { propertyRouter } from "./routes/propertyRouter.js"
+
+
 const app=express();
 
 //middelwares
@@ -23,6 +26,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api/v1/rent/user",router)
+app.use("/api/v1/rent/listing",propertyRouter)
 
 connectDB();
 
