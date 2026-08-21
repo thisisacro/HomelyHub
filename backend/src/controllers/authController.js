@@ -7,6 +7,7 @@ import imagekit from "../utils/ImagekitIO.js"
 import { sendMail, forgotPasswordMailGenContent } from "../utils/mail.js"
 import { signinToken, createSendToken, defaultAvatarUrl, filterObj } from "../utils/token.js"
 import { request } from "node:http"
+import { error } from "node:console"
 
 //signup:account creation
 
@@ -48,4 +49,50 @@ const login= async(req,res)=>{
    
 }
 
-export {signup,login}
+
+//protect
+const protect= async(req,res,next)=>{
+    try{
+        let token
+        //token present in request header
+        if(
+            req.headers.authorization && req.headers.authorization.startsWith("Bearer")
+        ){
+            token = req.headers.authorization.split(" ")[1]
+        }
+        //token is in cookies
+        else if(req.cookies.jwt && req.cookies.jwt !== "loggedout"){
+            token= req.cookies.jwt
+        }
+
+        //step 2: no token so stop here
+        if(!token){
+            throw new Error("You are not logged it! Please login to access")
+        }
+
+        //step 3:Check if token is real?
+        const decoded= jwt.verify(token,process.env.JWT_SECRET)
+
+        //step 4: token is real but does the suer still exist
+        const currentUser = await User.findById(decoded.id)
+        if(!currentUser){
+            throw new Error("User belonging to token does not exist")
+        }
+        //step 5: Stolen token case
+        //if token is chagned before password change then it must be invalid
+
+        if(currentUser.changedPasswordAfter(decoded.iat)){//iat= issued at
+            throw new Error("user recently changed the password. Please login again")
+        }
+
+        //Step 6: all checks passed
+        req.user=currentUser
+        next()
+    }catch(error){
+        res.status(401).json({
+            status:"fail",
+            message: "error.message"
+        })
+    }
+}
+export {signup,login,protect}

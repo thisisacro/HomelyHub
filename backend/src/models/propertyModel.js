@@ -8,7 +8,7 @@ const propertySchema = new mongoose.Schema({
     },
     description:{
         type:String,
-        require:[true,"Please add infromation about your property"]
+        required:[true,"Please add infromation about your property"]
     },
 
     extraInfo:{
@@ -38,7 +38,7 @@ const propertySchema = new mongoose.Schema({
             },
             icon:{
                 type:String,
-                require:true
+                required:true
             }
         }
     ],
@@ -50,7 +50,7 @@ const propertySchema = new mongoose.Schema({
                 },
                 url:{
                     type:String,
-                    require:true
+                    required:true
                 }
             }
         ],
@@ -63,7 +63,7 @@ const propertySchema = new mongoose.Schema({
         },
         price:{
             type:Number,
-            require:[true,"Please enter the price per night"],
+            required:[true,"Please enter the price per night"],
             default:1500
         },
         address:{
@@ -73,7 +73,22 @@ const propertySchema = new mongoose.Schema({
             pincode:Number
         },
         currentBookings:[
-            //must add model for ts
+            {
+                bookingId:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Booking"
+                },
+                fromdate:{
+                    type:Date
+                },
+                toDate:{
+                    type:Date
+                },
+                userId:{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:"User"
+                }
+            }
         ],
 
         userId:{
