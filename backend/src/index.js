@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 import connectDB from "./utils/db.js"
 import {router} from "./routes/userRoute.js"
 import { propertyRouter } from "./routes/propertyRouter.js"
-
+import { bookingRouter } from "./routes/bookingRouter.js"
 
 const app=express();
 
@@ -28,6 +28,7 @@ app.get("/",(req,res)=>{
 app.use("/api/v1/rent/user",router)
 app.use("/api/v1/rent/listing",propertyRouter)
 
+app.use("/api/v1/rent/user/booking",bookingRouter)
 connectDB();
 
 
