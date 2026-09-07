@@ -16,11 +16,12 @@ export const getSignup= (user)=>async(dispatch) =>{
 //login 
 export const getLogin = (user) => async(dispatch) =>{
     try{
-        dispatch (userActions.getLoginRequest())
-        const {data}= axiosInstance.post("/v1/rent/user/login",user)
-        dispatch(userActions.getLoginDetails(data.user))
+        dispatch(userActions.getLoginRequest());
+
+        const { data } = await axiosInstance.post("/v1/rent/user/login",user);
+        dispatch(userActions.getLoginDetails(data.user));
     }catch(error){
-        dispatch(userActions.getError(error.response.data.message))
+        dispatch(userActions.getError(error.response.data.message));
     }
 }
 
@@ -75,6 +76,7 @@ export const updatePassword= (passwords) => async(dispatch)=>{
 export const logout = () => async(dispatch)=>{
     try{
         await axiosInstance.get("/v1/rent/user/logout")
+        dispatch(userActions.getLogout(null))
     }catch(error){
         dispatch(userActions.getError(error.response.data.message))
     }

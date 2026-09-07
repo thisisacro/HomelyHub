@@ -18,11 +18,11 @@ export const getAllProperties=() => async(dispatch, getState)=>{
         console.log("API call started")
 
         dispatch(propertyAction.getRequest())
-        const {SearchParams} = getState().properties
-        console.log(SearchParams)
+        const {searchParams} = getState().properties
+        console.log(searchParams)
 
         const response = await axiosInstance.get(`/v1/rent/listing`,{
-            params:{SearchParams}
+            params:{...searchParams}
         })
 
         if(!response){
