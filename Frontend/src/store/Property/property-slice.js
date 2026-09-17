@@ -22,7 +22,7 @@ const propertySlice = createSlice({
         },
         getProperties(state,action){
             state.properties = action.payload.data;
-            state.totalProperties = action.payload.all_properties;
+            state.totalProperties = action.payload.no_of_responses;
             state.loading = false;
 
         },

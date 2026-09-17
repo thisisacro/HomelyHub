@@ -61,31 +61,27 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
   };
 
   const propertyTypeOptions = [
-    { value: "house", label: "House", icon: "home" },
-    { value: "flat", label: "Flat", icon: "apartment" },
-    { value: "guest-house", label: "Guest House", icon: "hotel" },
-    { value: "hotel", label: "Hotel", icon: "meeting_room" },
-  ];
+  { value: "House", label: "House", icon: "home" },
+  { value: "Flat", label: "Flat", icon: "apartment" },
+  { value: "Guest House", label: "Guest House", icon: "hotel" },
+  { value: "Hotel", label: "Hotel", icon: "meeting_room" },
+];
 
-  const roomTypeOptions = [
-    { value: "Entire Home", label: "Entire Home", icon: "hotel" },
-    { value: "Room", label: "Room", icon: "meeting_room" },
-    { value: "Anytype", label: "Any Type", icon: "apartment" },
-  ];
+const roomTypeOptions = [
+  { value: "Entire Home", label: "Entire Home", icon: "hotel" },
+  { value: "Room", label: "Room", icon: "meeting_room" },
+  { value: "AnyType", label: "Any Type", icon: "apartment" },
+];
 
-  const amenitiesOptions = [
-    { value: "Wifi", label: "Wi-Fi", icon: "wifi" },
-    { value: "Kitchen", label: "Kitchen", icon: "kitchen" },
-    { value: "Ac", label: "AC", icon: "ac_unit" },
-    {
-      value: "Washing Machine",
-      label: "Washing Machine",
-      icon: "local_laundry_service",
-    },
-    { value: "Tv", label: "TV", icon: "tv" },
-    { value: "Pool", label: "Pool", icon: "pool" },
-    { value: "Free Parking", label: "Free Parking", icon: "local_parking" },
-  ];
+const amenitiesOptions = [
+  { value: "Wifi", label: "Wi-Fi", icon: "wifi" },
+  { value: "Kitchen", label: "Kitchen", icon: "kitchen" },
+  { value: "AC", label: "AC", icon: "ac_unit" },
+  { value: "Washing Machine", label: "Washing Machine", icon: "local_laundry_service" },
+  { value: "TV", label: "TV", icon: "tv" },
+  { value: "Pool", label: "Pool", icon: "pool" },
+  { value: "Free parking", label: "Free Parking", icon: "local_parking" },
+];
 
   const handleClearFilters = () => {
     setPriceRange({ min: 600, max: 30000 });

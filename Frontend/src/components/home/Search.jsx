@@ -29,11 +29,16 @@ const Search = () => {
     setValue([]);
   }
 
+  // function returnDates(date, dateString) {
+  //   setValue([date[0], date[1]]);
+  //   updateKeyword("dateIn", dateString[0]);
+  //   updateKeyword("dateOut", dateString[1]);
+  // }
   function returnDates(date, dateString) {
-    setValue([date[0], date[1]]);
-    updateKeyword("dateIn", dateString[0]);
-    updateKeyword("dateOut", dateString[1]);
-  }
+  setValue([date[0], date[1]]);
+  updateKeyword("dateIn", date[0].format("YYYY-MM-DD"));
+  updateKeyword("dateOut", date[1].format("YYYY-MM-DD"));
+}
 
   const updateKeyword = (field, value) => {
     setKeyword((prevKeyword) => ({
