@@ -6,6 +6,7 @@ import connectDB from "./utils/db.js"
 import {router} from "./routes/userRoute.js"
 import { propertyRouter } from "./routes/propertyRouter.js"
 import { bookingRouter } from "./routes/bookingRouter.js"
+import { tripRouter } from "./routes/tripRouter.js"
 
 const app=express();
 
@@ -24,11 +25,15 @@ const PORT=process.env.PORT;
 app.get("/",(req,res)=>{
     res.send("HomelyHub server is running")
 })
+app.use(express.json({limit:"100mb"}))
+app.use(express.urlencoded({limit:"100mb",extended:true}))
+app.use(cookieParser())   // ← add this line
 
 app.use("/api/v1/rent/user",router)
 app.use("/api/v1/rent/listing",propertyRouter)
 
 app.use("/api/v1/rent/user/booking",bookingRouter)
+app.use("/api/v1/rent/trip",tripRouter)
 connectDB();
 
 

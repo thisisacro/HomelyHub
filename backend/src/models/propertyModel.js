@@ -60,8 +60,9 @@ const propertySchema = new mongoose.Schema({
                 return arr.length >= 6;
             },
             message: "Must contain atleast 6 images"
-        },
-        price:{
+        }
+    },
+    price:{
             type:Number,
             required:[true,"Please enter the price per night"],
             default:1500
@@ -106,19 +107,17 @@ const propertySchema = new mongoose.Schema({
             type:String,
             default:"13:00"
         }
-    }
 })
 
 //create slug automatically 
-propertySchema.pre("save",function(next){
+propertySchema.pre("save",function(){
     this.slug= slugify( this.propertyName,{lower:true})
-    next()
 })
 
-propertySchema.pre("save",function(next){
+propertySchema.pre("save",function(){
     this.address.city = this.address.city.toLowerCase().replaceAll(" ","")
-    next
+    
 })
 
-const Property= mongoose.model.Property|| mongoose.model("Property",propertySchema)
+const Property= mongoose.models.Property|| mongoose.model("Property",propertySchema)
 export{Property}

@@ -10,7 +10,7 @@ const initialamenities = [
   },
   {
     id: "parking",
-    value: "Free Parking",
+    value: "Free parking",
     checked: false,
     icon: "garage_home",
   },
@@ -20,9 +20,9 @@ const initialamenities = [
     icon: "local_laundry_service",
     checked: false,
   },
-  { id: "tv", value: "Tv", checked: false, icon: "tv" },
+  { id: "tv", value: "TV", checked: false, icon: "tv" },
   { id: "pool", value: "Pool", checked: false, icon: "pool" },
-  { id: "ac", value: "Ac", checked: false, icon: "air" },
+  { id: "ac", value: "AC", checked: false, icon: "air" },
 ];
 
 const AmenitiesField = ({ form }) => {
