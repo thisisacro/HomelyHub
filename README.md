@@ -190,9 +190,8 @@ frontend/
 
 ---
 
-## Known limitations
+## Current limitations
 
-Being upfront about these rather than presenting the project as production-ready:
 
 - **Payment is simulated**, not integrated with a real gateway — the two-phase create-order → verify-payment shape mirrors Razorpay/Stripe, but the actual charge is mocked.
 - **No token revocation** — a stolen JWT remains valid until it expires or the password is changed; there's no server-side session kill switch.
